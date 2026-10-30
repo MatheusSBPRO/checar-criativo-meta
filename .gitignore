@@ -1,0 +1,4 @@
+.transcricoes/
+__pycache__/
+.DS_Store
+resultado*.json

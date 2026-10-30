@@ -1,0 +1,277 @@
+{
+  "_como_editar": "Padrões em regex, aplicados no texto em minúsculo e SEM acento (escreva 'eleicao', não 'eleição'). severidade: ALTO = não sobe sem reescrever; MEDIO = depende do contexto; BAIXO = ajuste fino. Achou um termo novo que deu reprovação no seu nicho? Coloque aqui.",
+  "categorias": [
+    {
+      "id": "politica",
+      "nome": "Política e eleição",
+      "severidade": "ALTO",
+      "por_que": "Anúncio que cita eleição, governo, candidato ou partido entra na regra de 'temas sociais, eleições ou política': exige anunciante autorizado e o aviso 'Pago por'. Sem isso, reprova, e em ano de eleição a reprovação pode virar restrição no perfil e na conta.",
+      "padroes": [
+        "\\beleic",
+        "\\beleitor",
+        "\\burnas?\\b",
+        "\\bgovernos?\\b",
+        "\\bdeputad",
+        "\\bsenador",
+        "\\bgovernador",
+        "\\bstf\\b",
+        "\\blula\\b",
+        "\\bbolsonar",
+        "\\bpetista",
+        "\\bcpi\\b",
+        "\\btomando posse\\b",
+        "\\bhorario eleitoral\\b",
+        "\\bpartidos? politicos?\\b",
+        "\\bpresidente da republica\\b",
+        "\\bpoliticos?\\b",
+        "\\bpoliticas?\\b(?!\\s+(de|da|do)\\s+(privacidade|cookies|trocas?|reembolso|devolucao|uso|cancelamento|garantia|frete|entrega|qualidade|precos?|seguranca|dados|empresa|loja|vendas?|compras?|publicidade|anuncios|conteudo|comunidade))(?!\\s+(comercia|intern))"
+      ]
+    },
+    {
+      "id": "politica_contexto",
+      "nome": "Palavra que pode ser política",
+      "severidade": "MEDIO",
+      "por_que": "Termos que viram político conforme a frase: 'o presidente aumentou o imposto' é risco, 'presidente da empresa' não é. Leia o trecho.",
+      "padroes": [
+        "\\bpresident[ea]s?\\b",
+        "\\bpresidencia\\b",
+        "\\bministros?\\b",
+        "\\bministerio\\b",
+        "\\bcandidat",
+        "\\bprefeit[oa]s?\\b",
+        "\\bcongresso\\b",
+        "\\bplanalto\\b",
+        "\\bvot(o|os|ar|e|em|ou|ando|acao)\\b",
+        "\\besquerda\\b",
+        "\\bdireita\\b",
+        "\\bpartido\\b"
+      ]
+    },
+    {
+      "id": "temas_sociais",
+      "nome": "Tema social (imposto, economia do país)",
+      "severidade": "MEDIO",
+      "por_que": "Imposto, reforma tributária e economia do país podem cair na mesma regra de temas sociais. Falar do imposto como dor do cliente costuma passar; opinar sobre a medida do governo, não.",
+      "padroes": [
+        "\\bimpostos?\\b",
+        "\\breforma tributaria",
+        "\\bcbs\\b",
+        "\\bibs\\b",
+        "\\btaxacao\\b",
+        "\\binflacao\\b",
+        "\\bpec\\b",
+        "\\bmedida provisoria\\b"
+      ]
+    },
+    {
+      "id": "enriquecimento",
+      "nome": "Promessa de ganho / dinheiro fácil",
+      "severidade": "ALTO",
+      "por_que": "Prometer valor, renda garantida ou dinheiro sem esforço é tratado como prática enganosa ('enriquecimento rápido'). É a reprovação mais comum em renda extra, e repetida derruba a conta.",
+      "padroes": [
+        "ganh(e|ar|ei|ou|a|amos)\\s+(ate\\s+|mais de\\s+)?r\\$\\s?\\d",
+        "dinheiro facil",
+        "renda (extra )?garantida",
+        "lucro garantido",
+        "ganhos? garantidos?",
+        "resultado garantido",
+        "100% garantido",
+        "sem esforco",
+        "sem fazer nada",
+        "fi(que|car) ric[oa]s?\\b",
+        "\\benriquecimento rapido",
+        "dinheiro (caindo|pingando) (na conta|todo dia)",
+        "ganhar dinheiro (jogando|dormindo|enquanto dorme)",
+        "trabalhando (apenas|so) \\d+\\s?(min|minutos|hora)",
+        "\\b(print|prova)s? de (saque|pix|ganho)",
+        "\\bopcoes binarias",
+        "nunca mais (trabalhe|trabalhar|pagar boleto)",
+        "\\bpix caindo\\b"
+      ]
+    },
+    {
+      "id": "valor_por_periodo",
+      "nome": "Valor por dia/mês (é ganho ou é preço?)",
+      "severidade": "MEDIO",
+      "por_que": "'R$ 300 por dia' como ganho reprova; 'menos de R$ 1 por dia' como preço passa. Confira de que lado o número está.",
+      "padroes": [
+        "r\\$\\s?\\d[\\d\\.,]*\\s*(mil\\s*)?(reais\\s*)?(por|/|ao|todo|toda)\\s*(dia|semana|mes|hora)",
+        "\\d+\\s?(mil|k)\\s+(por|no|ao)\\s+mes"
+      ]
+    },
+    {
+      "id": "atributo_pessoal",
+      "nome": "Atributo pessoal (afirma algo sobre quem vê)",
+      "severidade": "ALTO",
+      "por_que": "O anúncio não pode afirmar ou insinuar condição de quem está vendo: dívida, nome sujo, saúde, peso, religião, orientação. 'Você que está endividado' reprova; 'para quem quer sair das dívidas' passa.",
+      "padroes": [
+        "\\bvoce (que )?(esta|e|anda|vive|ta|tambem esta) (endividad|negativad|desempregad|quebrad|falid|gord|acima do peso|obes|deprimid|ansios|doente|solteir|divorciad|careca|calv|sozinh|devendo)",
+        "\\bvoce (que )?(tem|sofre de|sofre com) (divida|depressao|ansiedade|diabetes|calvicie|queda de cabelo|dor|impotencia|insonia)",
+        "\\bvoce (e|esta) (evangelic|catolic|gay|lesbic|trans|bissexual)"
+      ]
+    },
+    {
+      "id": "atributo_pessoal_leve",
+      "nome": "Atributo pessoal (seu/sua)",
+      "severidade": "MEDIO",
+      "por_que": "'Sua dívida', 'seu nome sujo' insinuam a condição de quem vê. 'Negocie dívidas' é mais seguro que 'negocie sua dívida'.",
+      "padroes": [
+        "\\b(seu|sua) (nome sujo|cpf negativado|divida|dividas|depressao|ansiedade|diabetes|calvicie|barriga|peso)\\b"
+      ]
+    },
+    {
+      "id": "golpe_jogo",
+      "nome": "Moeda de jogo grátis / hack",
+      "severidade": "ALTO",
+      "por_que": "'Robux grátis', gerador de diamante, hack e mod menu são os golpes clássicos da plataforma: a Meta reprova por prática enganosa mesmo quando a oferta é honesta.",
+      "padroes": [
+        "\\b(robux|v-?bucks|diamantes?|skins?|gemas?|moedas?)\\s+(gratis|de graca|infinit)",
+        "\\bgerador de (robux|diamantes?|skins?|moedas?)",
+        "\\bmod ?menu\\b"
+      ]
+    },
+    {
+      "id": "marca_publico_infantil",
+      "nome": "Jogo, marca de terceiro e público infantil",
+      "severidade": "MEDIO",
+      "por_que": "Usar o nome ou a arte de outra marca (jogo, app, banco) pode dar denúncia de propriedade intelectual. Jogo com público infantil pede cuidado redobrado: renda e dinheiro não podem apelar para criança.",
+      "padroes": [
+        "\\broblox",
+        "\\brobux",
+        "\\bfree ?fire",
+        "\\bminecraft",
+        "\\bfortnite",
+        "\\bnetflix",
+        "\\bshopee",
+        "\\bmercado livre",
+        "\\bnubank",
+        "\\bkwai\\b",
+        "\\btiktok",
+        "\\bcrianca",
+        "\\bseu filho",
+        "\\bhack(s|ear|eado)?\\b",
+        "\\bconta (gratis|de graca)\\b"
+      ]
+    },
+    {
+      "id": "jogo_azar",
+      "nome": "Aposta e jogo de azar",
+      "severidade": "ALTO",
+      "por_que": "Aposta e cassino só rodam com autorização prévia da Meta e da lei local.",
+      "padroes": [
+        "\\bbets?\\b",
+        "\\bcassino",
+        "\\btigrinho",
+        "\\bjogo do bicho\\b",
+        "\\bbanca de aposta"
+      ]
+    },
+    {
+      "id": "jogo_azar_contexto",
+      "nome": "Pode ser aposta",
+      "severidade": "MEDIO",
+      "por_que": "'Aposta', 'slots' e 'roleta' também têm sentido comum. Se for jogo de dinheiro, vira ALTO.",
+      "padroes": [
+        "\\bapostas?\\b",
+        "\\bslots?\\b",
+        "\\broleta\\b"
+      ]
+    },
+    {
+      "id": "saude",
+      "nome": "Saúde e corpo",
+      "severidade": "MEDIO",
+      "por_que": "Antes e depois, perda de peso com número e cura reprovam com facilidade. Mostre o processo, não o resultado no corpo.",
+      "padroes": [
+        "antes e depois",
+        "per(ca|cam|di|deu|der|dem) \\d+\\s?(kg|quilos)",
+        "\\bemagre[cs]",
+        "\\bcura\\b",
+        "\\bcurar\\b",
+        "\\bremedio",
+        "\\bcelulite",
+        "\\bdiabetes",
+        "\\bimpotencia",
+        "\\bdisfuncao eretil",
+        "\\bqueima de gordura"
+      ]
+    },
+    {
+      "id": "financeiro",
+      "nome": "Produto financeiro e cripto",
+      "severidade": "MEDIO",
+      "por_que": "Cripto, trade, empréstimo e crédito têm regra própria (em alguns casos, autorização). Fale do aprendizado, nunca de rentabilidade.",
+      "padroes": [
+        "\\bcripto",
+        "\\bbitcoin",
+        "\\bday ?trade",
+        "\\bforex\\b",
+        "\\btrader?\\b",
+        "\\bemprestimo",
+        "credito (facil|aprovado|na hora)",
+        "rendimento garantido",
+        "\\brentabilidade de \\d"
+      ]
+    },
+    {
+      "id": "sensacionalismo",
+      "nome": "Sensacionalismo / isca de clique",
+      "severidade": "MEDIO",
+      "por_que": "Frase chocante, 'segredo que escondem' e falso urgente baixam a nota do anúncio e, em excesso, reprovam por conteúdo sensacionalista.",
+      "padroes": [
+        "voce nao vai acreditar",
+        "\\bchocante",
+        "segredo que (eles|ninguem|os bancos|os medicos|o governo)",
+        "(medicos|bancos|o governo|as empresas) (odeiam|escondem|nao querem que voce)",
+        "\\bescandalo",
+        "\\bvazou\\b",
+        "\\bproibid[oa]s? (pela|de)\\b"
+      ]
+    },
+    {
+      "id": "botao_falso",
+      "nome": "Botão ou função que não existe",
+      "severidade": "MEDIO",
+      "por_que": "Em IMAGEM, 'clique no play' ou botão desenhado engana quem vê e reprova. Em vídeo, pedir para clicar no botão do anúncio está ok.",
+      "padroes": [
+        "clique no play",
+        "aperte o play",
+        "de play\\b",
+        "toque no play"
+      ]
+    },
+    {
+      "id": "proibidos",
+      "nome": "Arma, droga, cigarro",
+      "severidade": "ALTO",
+      "por_que": "Produtos proibidos ou restritos nos Padrões de Publicidade.",
+      "padroes": [
+        "\\barma de fogo",
+        "\\bpistola\\b(?!\\s+(de|para)\\s+(cola|pintura|ar|solda|calor|massagem))",
+        "\\bmaconha",
+        "\\bcannabis",
+        "\\bcbd\\b",
+        "\\bvape\\b",
+        "\\bcigarro eletronico",
+        "\\bpod descartavel"
+      ]
+    },
+    {
+      "id": "palavrao",
+      "nome": "Palavrão",
+      "severidade": "BAIXO",
+      "por_que": "Palavrão no texto do anúncio derruba a entrega e às vezes reprova. Na fala do vídeo pesa menos, mas conta.",
+      "padroes": [
+        "\\bporra\\b",
+        "\\bcaralh",
+        "\\bmerda\\b",
+        "\\bfod(a|er|eu|ido|ase)\\b",
+        "\\bputa\\b",
+        "\\bbosta\\b",
+        "\\bfdp\\b",
+        "\\bpqp\\b",
+        "\\bcacete\\b"
+      ]
+    }
+  ]
+}
