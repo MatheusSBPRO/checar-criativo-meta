@@ -1,5 +1,8 @@
 # checar-criativo-meta
 
+> **Este repositório mudou para o [kit-trafego-ia](https://github.com/MatheusSBPRO/kit-trafego-ia/tree/main/ferramentas/checar-criativo-meta).** A versão daqui continua funcionando, mas não recebe mais atualização. Correções, novidades, issues e PRs agora vão para [kit-trafego-ia/ferramentas/checar-criativo-meta](https://github.com/MatheusSBPRO/kit-trafego-ia/tree/main/ferramentas/checar-criativo-meta).
+
+
 Peneira que roda **antes** de subir anúncio no Meta. Lê tudo o que vai no anúncio (a fala do vídeo,
 o texto da arte, a copy, o título e a página de destino) e marca o que costuma dar reprovação e,
 quando repete, restrição na conta.
